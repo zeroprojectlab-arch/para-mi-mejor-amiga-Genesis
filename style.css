@@ -1,1 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    background: linear-gradient(135deg, #1a0a1a 0%, #2d1b2d 50%, #1a0a1a 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+.text-container {
+    color: #ffd4e5;
+    text-shadow: 0 0 10px #ff6b9d, 0 0 20px #ff6b9d;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.text-container.visible {
+    opacity: 1;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    animation: pulse 2s infinite;
+}
+
+.timer {
+    font-size: 1.2rem;
+    color: #ffb3d0;
+}
+
+#contador {
+    font-weight: bold;
+    color: #ff6b9d;
+}
+
+#treeCanvas {
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+    background: linear-gradient(to bottom, #0d0d1a 0%, #1a1a2e 100%);
+    transition: transform 2s ease-in-out;
+    cursor: pointer;
+}
+
+#treeCanvas.moved {
+    transform: translateX(150px);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #ff6b9d, 0 0 20px #ff6b9d;
+    }
+    50% {
+        transform: scale(1.05);
+        text-shadow: 0 0 20px #ff6b9d, 0 0 40px #ff6b9d, 0 0 60px #ff6b9d;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Esto hace que los corazones NO tapen el árbol */
+    background: linear-gradient(to bottom, #1a0a2e, #3a1a5e); /* Degradado oscuro pro */
+}
+
+.text-container {
+    position: relative;
+    z-index: 10; /* Asegura que las letras brillen por encima de todo */
+}
+/* AJUSTE PARA CELULAR */
+canvas {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.text-container {
+    width: 90% !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+}
+
+#treeCanvas {
+    width: 100% !important;
+    max-height: 70vh; /* Para que no ocupe toda la pantalla hacia abajo */
+}
